@@ -2,6 +2,9 @@
 # coding: utf-8
 
 # # OSNAP data extraction
+# run with
+# qsub -P x77 -q normalbw -l ncpus=27 -l walltime=10:00:00,mem=108GB -l wd -l storage=gdata/hh5+gdata/ik11+gdata/cj50 -V -N OSNAP -- ./OSNAP.py
+
 
 # In[1]:
 
@@ -374,7 +377,7 @@ for expt in data.keys():
             for varname, vardata in dget([expt, 'global', freq, reduction]).items():
                 if not dknown(kkey+[varname]):
                     d = slicexy(vardata, region_data)
-                    d.attrs['subset'] = 'Subset extracted by https://github.com/aekiss/OSNAP/blob/ac8e45a/OSNAP.ipynb'
+                    d.attrs['subset'] = 'Subset extracted by https://github.com/aekiss/OSNAP/blob/9a2b951/OSNAP.py'
                     dput(kkey+[varname], d)
 
 
